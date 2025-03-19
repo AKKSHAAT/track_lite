@@ -28,6 +28,7 @@ model PageView {
   utm_referrer String
   user_agent  String
   ip_hash     String
+  referrer_id String? 
 }
 
 model Action {
