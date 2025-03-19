@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model PageView {
+  id          String   @id @default(uuid())
+  session_id  String
+  timestamp   DateTime @default(now())
+  user_id     String?  // Nullable field
+  page_type   String
+  resource_id String
+  utm_source  String
+  utm_medium  String
+  utm_campaign String
+  utm_content String
+  utm_term    String
+  utm_referrer String
+  user_agent  String
+  ip_hash     String
+}
+
+model Action {
+  id            String   @id @default(uuid())
+  timestamp     DateTime @default(now())
+  user_id       String
+  session_id    String
+  page_view_id  String   // Foreign key to PageView
+  action_type   String
+  resource_id   String
+  action_details Json
+}
+
+model TrackingConfiguration {
+  id            String   @id @default(uuid())
+  timestamp     DateTime @default(now())
+  user_id       String
+  session_id    String
+  page_view_id  String   // Foreign key to PageView
+  action_type   String
+  resource_id   String
+  action_details Json
+}
+
