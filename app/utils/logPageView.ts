@@ -1,39 +1,21 @@
-import { getReferrerId } from './tracking';
 import { PageView } from '@types/pageview';
 
-export async function logPageView({
-  session_id,
-  user_id,
-  page_type,
-  resource_id,
-  utm_source,
-  utm_medium,
-  utm_campaign,
-  utm_content,
-  utm_term,
-  utm_referrer,
-  user_agent,
-  ip_hash,
-} :  PageView) {
-  const referrer_id = getReferrerId(); 
+// Function to log a page view
+export async function logPageView(pageView: any, pageType: string, resourceId?: string) {
+  // Create the payload object with additional page type and resource ID
+  const payload: PageView = {
+    ...pageView,
+    page_type: pageType,
+    resource_id: resourceId || "",
+  };
 
-  await fetch('/api/pageview', {
+  // Send the payload to the server
+  const res = await fetch('/api/trackPageView', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      session_id,
-      user_id,
-      page_type,
-      resource_id,
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_content,
-      utm_term,
-      utm_referrer,
-      user_agent,
-      ip_hash,
-      referrer_id, 
-    }),
+    body: JSON.stringify(payload),
   });
+
+  // Log the server response
+  console.log(res);
 }

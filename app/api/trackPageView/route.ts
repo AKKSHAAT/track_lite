@@ -7,7 +7,6 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
     const {
-      session_id,
       user_id,
       page_type,
       resource_id,
@@ -19,13 +18,15 @@ export async function POST(req: NextRequest) {
       utm_referrer,
       user_agent,
       ip_hash,
-      referrer_id, // New field
     } = data;
+    
+    const session_id = req.cookies.get('session_id')?.value;
 
     if (!session_id || !page_type || !resource_id) {
+      console.log("Missing required fields", session_id, page_type , resource_id);
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
-
+    
     // Store the page view
     const pageView = await prisma.pageView.create({
       data: {
@@ -41,9 +42,10 @@ export async function POST(req: NextRequest) {
         utm_referrer,
         user_agent,
         ip_hash,
-        referrer_id, // Store referrer info
       },
     });
+
+    console.log('Page view saved:', pageView);
 
     return NextResponse.json({ success: true, pageView }, { status: 201 });
   } catch (error) {

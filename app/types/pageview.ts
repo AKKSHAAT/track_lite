@@ -1,7 +1,7 @@
 export interface PageView {
-    id: string;
-    session_id: string;
-    timestamp: Date;
+    id?: string;
+    session_id?: string;
+    timestamp?: Date;
     user_id?: string;  // Nullable field
     page_type: string;
     resource_id: string;
@@ -13,5 +13,4 @@ export interface PageView {
     utm_referrer: string;
     user_agent: string;
     ip_hash: string;
-    referrer_id?: string;  // Nullable field
   }
