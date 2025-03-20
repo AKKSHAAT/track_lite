@@ -1,5 +1,6 @@
 ![Track Lite](https://github.com/AKKSHAAT/track_lite/blob/master/img.png?raw=true)
 # Track Lite
+Developed during my internship at DemTech AI, this proof-of-concept tracks user activity using UTM parameters, associating page views and actions with traffic sources for analytics.
 ## Setup
 
 1. Clone the repository:
