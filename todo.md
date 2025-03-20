@@ -23,3 +23,12 @@ Got it! Since you haven’t done this before, I’ll guide you step by step. Her
 ### **6. Testing and Debugging**  
 - [ ] Validate data in SQLite  
 - [ ] Debug tracking issues with logs  
+
+
+
+collectParams()
+/feed /campaing page
+
+httpClient -> 
+
+serverHtppClient

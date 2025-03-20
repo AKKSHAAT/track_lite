@@ -4,10 +4,10 @@ import React from "react";
 import { usePathname } from "next/navigation";
 
 interface ShareButtonProps {
-  userId: string;
+  userId?: string;
 }
 
-const ShareButton: React.FC<ShareButtonProps> = ({ userId }) => {
+const ShareButton: React.FC<ShareButtonProps> = ({ userId="" }) => {
   const pathname = usePathname();
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
 
@@ -21,10 +21,9 @@ const ShareButton: React.FC<ShareButtonProps> = ({ userId }) => {
   });
   
   const shareUrl = `${baseUrl}${pathname}?${utmParams.toString()}`;
-  console.log("share URL", shareUrl);
   return (
-    <button onClick={() => navigator.clipboard.writeText(shareUrl)}>
-      Share this Page
+    <button className="border px-2 rounded-lg" onClick={() => navigator.clipboard.writeText(shareUrl)}>
+      Share
     </button>
   );
 };

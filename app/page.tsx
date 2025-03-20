@@ -1,10 +1,11 @@
 'use client'
 import { useEffect } from "react";
-import ShareButton from "@components/ShareButton";
 import { logPageView } from "@utils/logPageView";
 import { v4 as uuidv4 } from 'uuid';
-import { usePathname, useSearchParams } from "next/navigation";
-
+import { redirect, usePathname, useSearchParams } from "next/navigation";
+import campaigns from './Campaigns.json'
+import ShareButton from "./components/ShareButton";
+import getClientSession from "@utils/getClientSession";
 export default function Home() {
   const pathname = usePathname(); 
   const searchParams = useSearchParams();
@@ -21,15 +22,28 @@ export default function Home() {
     user_agent: navigator.userAgent || "not sure what this is",
     ip_hash: "TODO: Handle on Backend",
   };
+  const sessionId = getClientSession();
 
-  logPageView(pageView, "campaign", "123");
-  console.log("loggin✅✅✅", pageView);
+  logPageView(pageView, "HOME PAGE", "123", sessionId);
 }, [pathname, searchParams]); // Re-run if URL changes
+
+  const redirectToCampaignPage = (id: string) => {
+    redirect(`/campaign/${id}`);
+  };
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-     <h1 className=" text-3xl">hii</h1>
-     <ShareButton userId={"USER_1"}/>
+     <h1 className=" text-3xl">ALl our Cmapigns</h1>
+     <div className="grid grid-cols-3 gap-4">
+       {campaigns.map((campaign) => (
+         <div key={campaign.id} className=" p-4 rounded-lg" onClick={()=> redirectToCampaignPage(campaign.id)}>
+           <img className=" rounded-2xl" src={campaign.image} alt={campaign.title} />
+           <h2>{campaign.title}</h2>
+           <p>{campaign.description}</p>
+         </div>
+       ))}
+       <ShareButton />
+      </div>
     </div>
   );
 }

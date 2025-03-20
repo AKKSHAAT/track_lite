@@ -18,9 +18,10 @@ export async function POST(req: NextRequest) {
       utm_referrer,
       user_agent,
       ip_hash,
+      session_id,
     } = data;
     
-    const session_id = req.cookies.get('session_id')?.value;
+    // const session_id = req.cookies.get('session_id')?.value;
 
     if (!session_id || !page_type || !resource_id) {
       console.log("Missing required fields", session_id, page_type , resource_id);
@@ -44,9 +45,6 @@ export async function POST(req: NextRequest) {
         ip_hash,
       },
     });
-
-    console.log('Page view saved:', pageView);
-
     return NextResponse.json({ success: true, pageView }, { status: 201 });
   } catch (error) {
     console.error('Error saving page view:', error);

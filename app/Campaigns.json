@@ -1,0 +1,23 @@
+[
+  {
+    "type": "campaign",
+    "id": "c123456",
+    "title": "Save the Rainforest 🌲🌲",
+    "description": "Join us in our mission to protect the world's rainforests. Every contribution helps us plant trees and preserve wildlife habitats.",
+    "image": "https://picsum.photos/600/400?random=1"
+  },
+  {
+    "type": "campaign",
+    "id": "c789012",
+    "title": "Clean Ocean Initiative 🌊",
+    "description": "Help us remove plastic waste from the oceans and protect marine life from pollution.",
+    "image": "https://picsum.photos/600/400?random=2"
+  },
+  {
+    "type": "campaign",
+    "id": "c345678",
+    "title": "Education for All 📚",
+    "description": "Support our initiative to provide education and resources to underprivileged children worldwide.",
+    "image": "https://picsum.photos/600/400?random=3"
+  }
+]
