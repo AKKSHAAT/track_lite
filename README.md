@@ -1,5 +1,5 @@
 # Track Lite
-![Track Lite](https://github.com/AKKSHAAT/track_lite/blob/master/image.png?raw=true)
+![Track Lite](https://github.com/AKKSHAAT/track_lite/blob/master/img.png?raw=true)
 ## Setup
 
 1. Clone the repository:
